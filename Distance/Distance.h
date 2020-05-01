@@ -11,4 +11,6 @@ class Distance {
 
 };
 
+#include "Distance.cpp"
+
 #endif
