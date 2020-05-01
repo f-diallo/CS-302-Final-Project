@@ -20,7 +20,6 @@ class City {
 
         City & operator = (City & rhs);
  
-
 };
 
 #include "City.cpp"
