@@ -22,6 +22,4 @@ class City {
  
 };
 
-#include "City.cpp"
-
 #endif

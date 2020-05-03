@@ -13,7 +13,7 @@ class Graph{
     public:
         Graph();       //initialize cities and distances
         Graph(City * cities, Distance * distances);
-        Graph(Graph & other)
+        Graph(Graph & other);
         ~Graph();
 
         int getNumCities();
@@ -29,7 +29,7 @@ class Graph{
         void removeCity(City oldCity);  // redirects distances
         void clear();
 
-        Graph & Operator=
+        Graph & operator=(Graph & rhs);
         //Int shortestPath(City start, City end)   //required???
 
         void depthFirstTraversal(City start);

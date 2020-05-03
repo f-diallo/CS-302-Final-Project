@@ -1,7 +1,7 @@
 #ifndef DISTANCE_H_
 #define DISTANCE_H_
 
-#include "../City/City.h"
+#include "City.h"
 
 class Distance {
 
@@ -28,7 +28,5 @@ class Distance {
 
 
 };
-
-#include "Distance.cpp"
 
 #endif
