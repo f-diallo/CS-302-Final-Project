@@ -22,10 +22,12 @@ void City::setCity(std::string & city) {
 
 }
 
-City & City::operator = (City & rhs) {
+bool City::operator== (City & rhs){
 
-    m_city = rhs.m_city;
-    return *this;
+	if(m_city.compare(rhs.m_city)==0)
+		return true;
+	else
+		return false;
 
 }
 

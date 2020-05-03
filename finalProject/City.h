@@ -18,7 +18,7 @@ class City {
         std::string getCity();
         void setCity(std::string & city);
 
-        City & operator = (City & rhs);
+        bool operator== (City & rhs);
  
 };
 
