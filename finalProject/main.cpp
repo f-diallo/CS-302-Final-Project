@@ -10,7 +10,8 @@ using namespace std;
 int main()
 {
 //example: City X("New York");
-City A('Reno'), B("San Francisco"), C("Salt Lake City"), D("Seattle"), E("Las Vegas");
+string RNO="Reno", SF="San Francisco", SLC="Salt Lake City", SEA="Seattle", LV="Las Vegas";
+City A(RNO), B(SF), C(SLC), D(SEA), E(LV);
 
 City cities[5]={A, B, C, D, E};
 
@@ -21,6 +22,15 @@ Distance distances[9]={AC, AD, AE, BC, BD, BE, CD, CE, DE};
 
 //create graph
 Graph myGraph(cities, distances);
+
+//Assume a fixed metric of Miles Per Gallon = 40 and derive the cost of each transition in terms of miles.
+
+//print by way of brute force all possible paths from Reno to pass through all of the cities
+//print all paths to output file
+
+
+
+//indicate which path is the shortest one
 
 
 return 0;

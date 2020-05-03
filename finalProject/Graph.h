@@ -1,4 +1,4 @@
-
+//Graph.h
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
@@ -7,8 +7,8 @@
 
 class Graph{
     private:
-        City m_cities[5];
-        Distance m_distances[9];
+        City *m_cities;
+        Distance *m_distances;
     
     public:
         Graph();       //initialize cities and distances
@@ -17,7 +17,7 @@ class Graph{
         ~Graph();
 
         int getNumCities();
-        int getNumEdges();
+        int getNumDistances();
         int getEdgeWeight(City start, City end);
 
         bool isEmpty();
@@ -30,7 +30,7 @@ class Graph{
         void clear();
 
         Graph & operator=(Graph & rhs);
-        //Int shortestPath(City start, City end)   //required???
+        int shortestPath(City start, City end);   //required???       yep
 
         void depthFirstTraversal(City start);
         void breadFirstTraversal(City start);
@@ -39,6 +39,5 @@ class Graph{
 
 };
 
-#include "Graph.cpp"
 
 #endif //GRAPH_H_
