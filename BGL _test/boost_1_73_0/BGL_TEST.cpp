@@ -35,6 +35,8 @@ int main()
     vertexType LAS_location = add_vertex(G);
     G[LAS_location] = "Las Vegas";
     
+    edgeType RNO_SFO_route = add_edge(RNO_location, SFO_location, G).first;
+    weightmap[RNO_SFO_route] = 220;
     edgeType RNO_SLC_route = add_edge(RNO_location, SLC_location, G).first;
     weightmap[RNO_SLC_route] = 520;
     edgeType RNO_SEA_route = add_edge(RNO_location, SEA_location, G).first;
@@ -72,13 +74,11 @@ int main()
 
 /*all possible paths
 //each path has an array of cities in the order the path was taken and the length/mileage of the path
+abcde,abced,abdec,abdce,abecd,abedc,
 acbde,acbed,acdeb,acdbe,acebd,acedb,
 adbce,adbec,adceb,adcbe,adebc,adecb,
 aebcd,aebdc,aecdb,aecbd,aedbc,aedcb
-if you have to return to reno, that eliminates all paths that end w/ b, leaving 12
-acbde,acbed,acdbe,acebd,
-adbce,adbec,adcbe,adebc,
-aebcd,aebdc,aecbd,aedbc
+
 while finding paths store path w/ lowest mileage to find shortest path
 */
 return 0;
