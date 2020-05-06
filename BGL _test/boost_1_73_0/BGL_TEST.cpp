@@ -70,6 +70,16 @@ int main()
 		cout<<")" << endl;
 	}
 
-
+/*all possible paths
+//each path has an array of cities in the order the path was taken and the length/mileage of the path
+acbde,acbed,acdeb,acdbe,acebd,acedb,
+adbce,adbec,adceb,adcbe,adebc,adecb,
+aebcd,aebdc,aecdb,aecbd,aedbc,aedcb
+if you have to return to reno, that eliminates all paths that end w/ b, leaving 12
+acbde,acbed,acdbe,acebd,
+adbce,adbec,adcbe,adebc,
+aebcd,aebdc,aecbd,aedbc
+while finding paths store path w/ lowest mileage to find shortest path
+*/
 return 0;
 }
