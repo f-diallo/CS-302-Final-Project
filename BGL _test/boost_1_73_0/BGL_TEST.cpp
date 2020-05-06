@@ -56,29 +56,19 @@ int main()
 
     
     
-    
+	//output
 
-    
-    
-    
-/*
-//output
+	typedef property_map<Graph, vertex_index_t>::type IndexMap;
+	IndexMap index= get(vertex_index, G);
 
-// get the property map for vertex indices
-typedef property_map<Graph, edge_index_t>::type IndexMap;
-IndexMap index = get(edge_index, G);
-
-cout << "edges(G) =";
-graph_traits<Graph>::edge_iterator ei;
-graph_traits<Graph>::edge_iterator ei_end;
-for(tie(ei, ei_end) = edges(G); ei != ei_end; ++ei){
-    cout << "("<< index[source(*ei , G)];
-    cout << ","<< index[target(*ei , G)];
-    cout << ")"<< endl;
-
-}
-*/
-//7:03
+	cout<<"Edges(G):\n";
+	edgeIterator ei, ei_end;
+	for(tie(ei, ei_end)= edges(G); ei!=ei_end; ++ei)
+	{
+		cout<<"(" << index[source(*ei, G)];
+		cout<<", "<< index[target(*ei, G)];
+		cout<<")" << endl;
+	}
 
 
 return 0;
