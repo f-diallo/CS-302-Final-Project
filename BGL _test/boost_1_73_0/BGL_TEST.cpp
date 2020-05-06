@@ -2,9 +2,11 @@
 #include <iostream>                 // for std::cout
 #include <utility>                  // for std::pair
 #include <string>                   //for std:: string
-#include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
+#include <boost/graph/graphviz.hpp>
+#include <boost/graph/properties.hpp>
+#include <boost/property_map/property_map.hpp>
+#include <boost/graph/named_function_params.hpp>
 
 using namespace std;
 using namespace boost;
@@ -13,39 +15,52 @@ using namespace boost;
 int main()
 {
 
-// create a typedef for the Graph type
-//typedef adjacency_list<vecS, vecS, bidirectionalS> Graph;
-typedef adjacency_list<listS, vecS, directedS, 
-                       no_property, property<edge_weight_t, int> > Graph;
+    typedef adjacency_list<listS, vecS, directedS, string, property<edge_weight_t, int>> Graph;
+    typedef boost::graph_traits<Graph>::vertex_descriptor vertexType;
+    typedef boost::graph_traits<Graph>::edge_descriptor edgeType;
+    typedef boost::graph_traits<Graph>::edge_iterator edgeIterator;
+    typedef boost::graph_traits<Graph>::vertex_iterator vertexIterator;
+    
+    Graph G;
+    boost::property_map<Graph, boost::edge_weight_t>::type weightmap = get(boost::edge_weight, G);
+    
+    vertexType SFO_location = add_vertex(G);
+    G[SFO_location] = "San Francisco";
+    vertexType RNO_location = add_vertex(G);
+    G[RNO_location] = "Reno";
+    vertexType SLC_location = add_vertex(G);
+    G[SLC_location] = "Salt Lake City";
+    vertexType SEA_location = add_vertex(G);
+    G[SEA_location] = "Seattle";
+    vertexType LAS_location = add_vertex(G);
+    G[LAS_location] = "Las Vegas";
+    
+    edgeType RNO_SLC_route = add_edge(RNO_location, SLC_location, G).first;
+    weightmap[RNO_SLC_route] = 520;
+    edgeType RNO_SEA_route = add_edge(RNO_location, SEA_location, G).first;
+    weightmap[RNO_SEA_route] = 700;
+    edgeType RNO_LAS_route = add_edge(RNO_location, LAS_location, G).first;
+    weightmap[RNO_LAS_route] = 440;
+    edgeType SFO_SEA_route = add_edge(SFO_location, SEA_location, G).first;
+    weightmap[SFO_SEA_route] = 740;
+    edgeType SFO_SLC_route = add_edge(SFO_location, SLC_location, G).first;
+    weightmap[SFO_SLC_route] = 800;
+    edgeType SFO_LAS_route = add_edge(SFO_location, LAS_location, G).first;
+    weightmap[SFO_LAS_route] = 570;
+    edgeType SLC_SEA_route = add_edge(SLC_location, SEA_location, G).first;
+    weightmap[SLC_SEA_route] = 840;
+    edgeType SLC_LAS_route = add_edge(SLC_location, LAS_location, G).first;
+    weightmap[SLC_LAS_route] = 420;
+    edgeType SEA_LAS_route = add_edge(SEA_location, LAS_location, G).first;
+    weightmap[SEA_LAS_route] = 1100;
 
-//example: NYC="New York City";
-string RNO="Reno", SF="San Francisco", SLC="Salt Lake City", SEA="Seattle", LV="Las Vegas";
+    
+    
+    
 
-//Make labels for vertices
-const int numCities=5;
-
-//write out edges for graph
-typedef pair<string, string> Distance;
-Distance distances[]=
-{ Distance(RNO, SLC), Distance(RNO, SEA), 
-  Distance(RNO, LV), Distance(SF, SLC), 
-  Distance(SF, SEA), Distance(SF, LV), 
-  Distance(SLC, SEA), Distance(SLC, LV), 
-  Distance(SEA, LV)};
-
-const int numEdges= sizeof(distances)/sizeof(distances[0]);
-
-//add weight/mileage to edges/distances
-int mileages[]= {520, 700, 440, 740, 800,
-                 570, 840, 420, 1100};
-
-
-//declare graph object and add edges to graph object
-Graph G(distances, distances + sizeof(distances)/sizeof(Distance), mileages, numCities);
-
-//all we have to do is create a graph, figure out all the possible paths by brute force
-//and find the shortest path by algorithm, output to .txt file
-
+    
+    
+    
 /*
 //output
 
@@ -62,9 +77,9 @@ for(tie(ei, ei_end) = edges(G); ei != ei_end; ++ei){
     cout << ")"<< endl;
 
 }
-
-//7:03
 */
+//7:03
+
 
 return 0;
 }
