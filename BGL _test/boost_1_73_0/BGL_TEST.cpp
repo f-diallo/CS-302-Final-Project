@@ -22,7 +22,7 @@ typedef adjacency_list<listS, vecS, directedS,
 string RNO="Reno", SF="San Francisco", SLC="Salt Lake City", SEA="Seattle", LV="Las Vegas";
 
 //Make labels for vertices
-const int numVertices=5;
+const int numCities=5;
 
 //write out edges for graph
 typedef pair<string, string> Distance;
@@ -41,9 +41,12 @@ int mileages[]= {520, 700, 440, 740, 800,
 
 
 //declare graph object and add edges to graph object
-Graph G(distances, distances + sizeof(distances)/sizeof(Distance), mileages, numVertices);
+Graph G(distances, distances + sizeof(distances)/sizeof(Distance), mileages, numCities);
 
+//all we have to do is create a graph, figure out all the possible paths by brute force
+//and find the shortest path by algorithm, output to .txt file
 
+/*
 //output
 
 // get the property map for vertex indices
@@ -61,7 +64,7 @@ for(tie(ei, ei_end) = edges(G); ei != ei_end; ++ei){
 }
 
 //7:03
-
+*/
 
 return 0;
 }
