@@ -1,8 +1,12 @@
 //Boost Graph Library test
+//Compile command: c++ -I /home/fatima/Desktop/BGL_test1/boost_1_66_0 BGL_TEST.cpp -o BGL_TEST
+//Run command: ./BGL_TEST
 #include <iostream>                 // for std::cout
 #include <utility>                  // for std::pair
-#include <string>                   //for std:: string
+#include <string>                   //for std::string
+#include <bits/stdc++.h>			//for std::swap, STL
 #include <fstream>					//for std::ofstream
+#include <algorithm>				//for min_element
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/properties.hpp>
@@ -13,12 +17,13 @@ using namespace std;
 using namespace boost;
 
 //function declaration
-void allPossiblePaths(char a[], int size, int n, ofstream & fout);
+void allPossiblePaths(char a[], int size, int n, ofstream & fout, vector<float> & mile);
 float findMileage(char * a);
+
 int main()
 {
 
-    typedef adjacency_list<listS, vecS, directedS, string, property<edge_weight_t, int> > Graph;
+    typedef adjacency_list<listS, vecS, directedS, string, property<edge_weight_t, int>> Graph;
     typedef boost::graph_traits<Graph>::vertex_descriptor vertexType;
     typedef boost::graph_traits<Graph>::edge_descriptor edgeType;
     typedef boost::graph_traits<Graph>::edge_iterator edgeIterator;
@@ -59,6 +64,7 @@ int main()
     edgeType SEA_LAS_route = add_edge(SEA_location, LAS_location, G).first;
     weightmap[SEA_LAS_route] = 1100;
 
+    
 	//output
 
 	typedef property_map<Graph, vertex_index_t>::type IndexMap;
@@ -76,56 +82,41 @@ int main()
 	ofstream fout;
 	fout.open("GraphOutput.txt");
 
+	static vector<float> mile;
+
 	char test[5]={"BCDE"};
-    allPossiblePaths(test, 4, 4, fout);
+    allPossiblePaths(test, 4, 4, fout, mile);
 
-	fout << "\nShortest Route Found with Cost:" << endl;
-	fout << "A-> E-> C-> D-> B-> A	Mileage: 2660	Cost: $172.235\n" << endl;
-
-	fout << "**************************** \n By Fatima Diallo \n By Araam Zaremehrjardi \n Git Link: https://github.com/f-diallo/CS-302-Final-Project \n ****************************";
-
-	char p1, p2, p3, p4, p5;
-	int mileage = 0;
-	float totalCost = 0;
 	fout.close();
-	char arrow[4] = "-> ";
-	char tab[2] = "\t";
-	char mileageText[10] = "Mileage: ";
-	char space[2] = " ";
-	char costText[8] = "Cost: $";
 
-
-	
-
-	ifstream fin;
-	fin.open("GraphOutput.txt");
-	//fin >> p1 >> arrow >> p2 >> arrow >> p3 >> arrow >> p4 >> arrow >> p5 >> tab >> mileageText >> mileage >> space >> costText >> totalCost;
-	cout << p1 << p2 << p3 << p4 << p5 << mileage << totalCost << endl;
-	//cout << p1 << arrow << p2 << arrow << p3 << arrow << p4 << arrow << p5 << tab << mileageText << space << costText << totalCost;
-
+	float minimum=*min_element(mile.begin(), mile.end());
+	cout<<minimum<<endl;
 
 return 0;
 }
 
-//still need to add mileage
-void allPossiblePaths(char * a, int size, int n, ofstream & fout)
+
+void allPossiblePaths(char * a, int size, int n, ofstream & fout, vector<float> & mile)
 {
 
 	if(size==1){
 		float miles=0, mpg= 40, ppg=2.59;
+
 		fout<<"A-> ";
 		for(int j=0; j<4; j++){
 			fout<<a[j]<<"-> ";
 		}
 		fout<<"A\t";
 		miles=findMileage(a);
-		fout<<"Mileage: "<<miles<<"\tCost: $"<<miles*ppg/mpg<<endl;
+		float cost=miles*ppg/mpg;
+		fout<<"Mileage: "<<miles<<"\tCost: $"<<cost<<endl;
+		mile.push_back(cost);
 		return;
 	}
 
 	for(int i=0; i<size; i++)
 	{
-		allPossiblePaths(a, size-1, n, fout);
+		allPossiblePaths(a, size-1, n, fout, mile);
 		//if size is odd, swap first and last
 		if(size%2==1)
 			swap(a[0], a[size-1]);
@@ -212,5 +203,7 @@ float findMileage(char * a)
 
 	return mileage;
 }
+
+
 
 
