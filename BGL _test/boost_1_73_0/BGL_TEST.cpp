@@ -91,13 +91,14 @@ void allPossiblePaths(char * a, int size, int n, ofstream & fout)
 {
 
 	if(size==1){
-		//float mileage=0, mpg= 40, ppg=2.59;
+		float miles=0, mpg= 40, ppg=2.59;
 		fout<<"A-> ";
 		for(int j=0; j<4; j++){
 			fout<<a[j]<<"-> ";
 		}
-		fout<<"A"<<endl;
-		//fout<<"Mileage: "<<mileage<<"\tCost: "<<mileage*ppg/mpg<<endl;
+		fout<<"A\t";
+		miles=findMileage(a);
+		fout<<"Mileage: "<<miles<<"\tCost: $"<<miles*ppg/mpg<<endl;
 		return;
 	}
 
