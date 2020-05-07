@@ -82,6 +82,8 @@ int main()
 	ofstream fout;
 	fout.open("GraphOutput.txt");
 
+	fout<<"A=Reno, B=San Francisco, C=Salt Lake City, D=Seattle, E=Las Vegas\n";
+
 	static vector<float> mile;
 	static vector<float> price;
 
