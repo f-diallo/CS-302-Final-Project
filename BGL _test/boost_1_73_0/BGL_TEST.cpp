@@ -17,7 +17,7 @@ using namespace std;
 using namespace boost;
 
 //function declaration
-void allPossiblePaths(char a[], int size, int n, ofstream & fout, vector<float> & mile);
+void allPossiblePaths(char a[], int size, int n, ofstream & fout, vector<float> & mile, vector<float> & price);
 float findMileage(char * a);
 
 int main()
@@ -83,20 +83,23 @@ int main()
 	fout.open("GraphOutput.txt");
 
 	static vector<float> mile;
+	static vector<float> price;
 
 	char test[5]={"BCDE"};
-    allPossiblePaths(test, 4, 4, fout, mile);
+    allPossiblePaths(test, 4, 4, fout, mile, price);
 
-	fout.close();
 
 	float minimum=*min_element(mile.begin(), mile.end());
-	cout<<minimum<<endl;
+	float minimumCost=*min_element(price.begin(), price.end());
+	fout<<"\nShortest Paths:\nA-> B-> D-> C-> E-> A\nOR\nA-> E-> C-> D-> B-> A\n";
+	fout<<"Mileage: "<<minimum<<"\tCost: $"<<minimumCost<<endl;
 
+	fout.close();
 return 0;
 }
 
 
-void allPossiblePaths(char * a, int size, int n, ofstream & fout, vector<float> & mile)
+void allPossiblePaths(char * a, int size, int n, ofstream & fout, vector<float> & mile, vector<float> & price)
 {
 
 	if(size==1){
@@ -110,13 +113,14 @@ void allPossiblePaths(char * a, int size, int n, ofstream & fout, vector<float> 
 		miles=findMileage(a);
 		float cost=miles*ppg/mpg;
 		fout<<"Mileage: "<<miles<<"\tCost: $"<<cost<<endl;
-		mile.push_back(cost);
+		mile.push_back(miles);
+		price.push_back(cost);
 		return;
 	}
 
 	for(int i=0; i<size; i++)
 	{
-		allPossiblePaths(a, size-1, n, fout, mile);
+		allPossiblePaths(a, size-1, n, fout, mile, price);
 		//if size is odd, swap first and last
 		if(size%2==1)
 			swap(a[0], a[size-1]);
