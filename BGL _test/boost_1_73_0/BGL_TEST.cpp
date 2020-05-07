@@ -14,7 +14,7 @@ using namespace boost;
 
 //function declaration
 void allPossiblePaths(char a[], int size, int n, ofstream & fout);
-
+int findMileage(char * a);
 int main()
 {
 
@@ -112,3 +112,83 @@ void allPossiblePaths(char * a, int size, int n, ofstream & fout)
 	}
 
 }
+
+float findMileage(char * a)
+{
+	float mileage=0;
+	char first='A', second=a[0];
+	for(int i=1; i<5; i++)
+	{
+
+		if(first=='A')
+		{
+			if(second=='B')
+				mileage+=220;
+			else if(second=='C')
+				mileage+=520;
+			else if(second=='D')
+				mileage+=700;
+			else if(second=='E')
+				mileage+=440;
+		}
+		else if(first=='B')
+		{
+			if(second=='A')
+				mileage+=220;
+			else if(second=='C')
+				mileage+=800;
+			else if(second=='D')
+				mileage+=740;
+			else if(second=='E')
+				mileage+=570;
+		}
+		else if(first=='C')
+		{
+			if(second=='A')
+				mileage+=520;
+			else if(second=='B')
+				mileage+=800;
+			else if(second=='D')
+				mileage+=840;
+			else if(second=='E')
+				mileage+=420;
+		}
+		else if(first=='D')
+		{
+			if(second=='A')
+				mileage+=700;
+			else if(second=='B')
+				mileage+=740;
+			else if(second=='C')
+				mileage+=840;
+			else if(second=='E')
+				mileage+=1100;
+		}
+		else if(first=='E')
+		{
+			if(second=='A')
+				mileage+=440;
+			else if(second=='B')
+				mileage+=570;
+			else if(second=='C')
+				mileage+=420;
+			else if(second=='D')
+				mileage+=1100;
+		}
+		first=a[i-1];
+		second=a[i];
+	}
+	//return trip
+		if(a[3]=='B')
+			mileage+=220;
+		else if(a[3]=='C')
+			mileage+=520;
+		else if(a[3]=='D')
+			mileage+=700;
+		else if(a[3]=='E')
+			mileage+=440;
+
+	return mileage;
+}
+
+
