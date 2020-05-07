@@ -1,0 +1,37 @@
+A=Reno, B=San Francisco, C=Salt Lake City, D=Seattle, E=Las Vegas
+A-> B-> C-> D-> E-> A	Mileage: 3400	Cost: $220.15
+A-> C-> B-> D-> E-> A	Mileage: 3600	Cost: $233.1
+A-> D-> B-> C-> E-> A	Mileage: 3100	Cost: $200.725
+A-> B-> D-> C-> E-> A	Mileage: 2660	Cost: $172.235
+A-> C-> D-> B-> E-> A	Mileage: 3110	Cost: $201.372
+A-> D-> C-> B-> E-> A	Mileage: 3350	Cost: $216.913
+A-> E-> C-> D-> B-> A	Mileage: 2660	Cost: $172.235
+A-> C-> E-> D-> B-> A	Mileage: 3000	Cost: $194.25
+A-> D-> E-> C-> B-> A	Mileage: 3240	Cost: $209.79
+A-> E-> D-> C-> B-> A	Mileage: 3400	Cost: $220.15
+A-> C-> D-> E-> B-> A	Mileage: 3250	Cost: $210.438
+A-> D-> C-> E-> B-> A	Mileage: 2750	Cost: $178.062
+A-> E-> B-> D-> C-> A	Mileage: 3110	Cost: $201.372
+A-> B-> E-> D-> C-> A	Mileage: 3250	Cost: $210.438
+A-> D-> E-> B-> C-> A	Mileage: 3690	Cost: $238.927
+A-> E-> D-> B-> C-> A	Mileage: 3600	Cost: $233.1
+A-> B-> D-> E-> C-> A	Mileage: 3000	Cost: $194.25
+A-> D-> B-> E-> C-> A	Mileage: 2950	Cost: $191.012
+A-> E-> B-> C-> D-> A	Mileage: 3350	Cost: $216.913
+A-> B-> E-> C-> D-> A	Mileage: 2750	Cost: $178.062
+A-> C-> E-> B-> D-> A	Mileage: 2950	Cost: $191.012
+A-> E-> C-> B-> D-> A	Mileage: 3100	Cost: $200.725
+A-> B-> C-> E-> D-> A	Mileage: 3240	Cost: $209.79
+A-> C-> B-> E-> D-> A	Mileage: 3690	Cost: $238.927
+
+Shortest Paths:
+A-> B-> D-> C-> E-> A
+OR
+A-> E-> C-> D-> B-> A
+Mileage: 2660	Cost: $172.235
+
+****************************
+By Fatima Diallo
+By Araam Zaremehrjardi
+Git Link: https://github.com/f-diallo/CS-302-Final-Project
+****************************
