@@ -14,11 +14,11 @@ using namespace boost;
 
 //function declaration
 void allPossiblePaths(char a[], int size, int n, ofstream & fout);
-int findMileage(char * a);
+float findMileage(char * a);
 int main()
 {
 
-    typedef adjacency_list<listS, vecS, directedS, string, property<edge_weight_t, int>> Graph;
+    typedef adjacency_list<listS, vecS, directedS, string, property<edge_weight_t, int> > Graph;
     typedef boost::graph_traits<Graph>::vertex_descriptor vertexType;
     typedef boost::graph_traits<Graph>::edge_descriptor edgeType;
     typedef boost::graph_traits<Graph>::edge_iterator edgeIterator;
