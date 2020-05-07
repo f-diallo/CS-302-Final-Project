@@ -2,6 +2,7 @@
 #include <iostream>                 // for std::cout
 #include <utility>                  // for std::pair
 #include <string>                   //for std:: string
+#include <fstream>					//for std::ofstream
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/properties.hpp>
@@ -11,6 +12,8 @@
 using namespace std;
 using namespace boost;
 
+//function declaration
+void allPossiblePaths(char a[], int size, int n, ofstream & fout);
 
 int main()
 {
@@ -72,14 +75,40 @@ int main()
 		cout<<")" << endl;
 	}
 
-/*all possible paths
-//each path has an array of cities in the order the path was taken and the length/mileage of the path
-abcde,abced,abdec,abdce,abecd,abedc,
-acbde,acbed,acdeb,acdbe,acebd,acedb,
-adbce,adbec,adceb,adcbe,adebc,adecb,
-aebcd,aebdc,aecdb,aecbd,aedbc,aedcb
+	ofstream fout;
+	fout.open("GraphOutput.txt");
 
-while finding paths store path w/ lowest mileage to find shortest path
-*/
+	char test[5]={"BCDE"};
+    allPossiblePaths(test, 4, 4, fout);
+
+	fout.close();
+
 return 0;
+}
+
+//still need to add mileage
+void allPossiblePaths(char * a, int size, int n, ofstream & fout)
+{
+
+	if(size==1){
+		//float mileage=0, mpg= 40, ppg=2.59;
+		fout<<"A-> ";
+		for(int j=0; j<4; j++){
+			fout<<a[j]<<"-> ";
+		}
+		fout<<"A"<<endl;
+		//fout<<"Mileage: "<<mileage<<"\tCost: "<<mileage*ppg/mpg<<endl;
+		return;
+	}
+
+	for(int i=0; i<size; i++)
+	{
+		allPossiblePaths(a, size-1, n, fout);
+		//if size is odd, swap first and last
+		if(size%2==1)
+			swap(a[0], a[size-1]);
+		else	//swap current element and last
+			swap(a[i], a[size-1]);
+	}
+
 }
