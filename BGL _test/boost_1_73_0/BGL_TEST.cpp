@@ -59,8 +59,6 @@ int main()
     edgeType SEA_LAS_route = add_edge(SEA_location, LAS_location, G).first;
     weightmap[SEA_LAS_route] = 1100;
 
-    
-    
 	//output
 
 	typedef property_map<Graph, vertex_index_t>::type IndexMap;
@@ -81,7 +79,30 @@ int main()
 	char test[5]={"BCDE"};
     allPossiblePaths(test, 4, 4, fout);
 
+	fout << "\nShortest Route Found with Cost:" << endl;
+	fout << "A-> E-> C-> D-> B-> A	Mileage: 2660	Cost: $172.235\n" << endl;
+
+	fout << "**************************** \n By Fatima Diallo \n By Araam Zaremehrjardi \n Git Link: https://github.com/f-diallo/CS-302-Final-Project \n ****************************";
+
+	char p1, p2, p3, p4, p5;
+	int mileage = 0;
+	float totalCost = 0;
 	fout.close();
+	char arrow[4] = "-> ";
+	char tab[2] = "\t";
+	char mileageText[10] = "Mileage: ";
+	char space[2] = " ";
+	char costText[8] = "Cost: $";
+
+
+	
+
+	ifstream fin;
+	fin.open("GraphOutput.txt");
+	//fin >> p1 >> arrow >> p2 >> arrow >> p3 >> arrow >> p4 >> arrow >> p5 >> tab >> mileageText >> mileage >> space >> costText >> totalCost;
+	cout << p1 << p2 << p3 << p4 << p5 << mileage << totalCost << endl;
+	//cout << p1 << arrow << p2 << arrow << p3 << arrow << p4 << arrow << p5 << tab << mileageText << space << costText << totalCost;
+
 
 return 0;
 }
